@@ -1,0 +1,27 @@
+.gold_generation{
+    display:inline-block;
+    border-style: solid;
+    display: flex-inline;
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+    width: 150px;
+    margin: 12px;
+    
+}
+#forms{
+    width: 800px;
+    border: 2px solid black;
+    margin: auto;
+}
+#gold {
+    border-style: solid;
+    justify-content: space-evenly;
+    padding: 5px;
+}
+
+div#activity {
+    border: 2px solid black;
+    padding: 5px;
+    
+}

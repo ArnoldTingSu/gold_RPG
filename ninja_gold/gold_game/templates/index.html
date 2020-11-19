@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nina Gold!</title>
+        {% load static %}
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>WELCOME TO NINJA GOLD!</h1>
+
+
+    <p>Your gold: <span id="gold">{{request.session.gold}}</span id="gold"></p>
+        <a href="/reset">reset gold here!</a>
+
+    <p>GOLD GOAL: {{request.session.win}} </p>
+
+    {% if request.session.end %}
+    <h1>WOOO! YOU WIN!</h1>
+    {% endif %}
+    
+    <form action="/win_condition" method="POST">
+        {% csrf_token %}
+        <input type="number" name="win">
+        <input type="submit" value="Play">
+
+    </form>
+        
+
+    <div id="forms">
+        {% for place in places %}
+        <form action="/place/{{place}}" class="gold_generation">
+            <h1>{{place}}</h1>
+
+            {% if place == 'farm' %}
+                <p>{{places.farm}}</p>
+
+            {% elif place == 'cave' %}
+                <p>{{places.cave}}</p>
+
+            {% elif place == 'house' %}
+                <p>{{places.house}}</p>
+
+            {% else %}
+                <p>{{places.casino}}</p>
+            {% endif %}
+            
+            <input type="submit" value="Visit the {{place}}!">
+        </form>
+        {% endfor %}
+        
+        <div id="activity">
+            <p>Activity: </p>
+            {% for activity in request.session.activity %}
+            <ul>
+            {% if "lost" in activity %}
+                <li style=color:red>{{activity}}</li>
+            {% else %}
+                <li style=color:green>{{activity}}</li>
+                {% endif %}
+             
+            </ul>
+            {% endfor %}
+        </div>
+        
+    </div>
+</body>
+</html>
